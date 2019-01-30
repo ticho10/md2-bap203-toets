@@ -1,10 +1,13 @@
 @extends('layouts.master')
 
 @section('content')
-    <p>Text</p>
+    @foreach($links as $link)
+        <a href="{{ $link->url }}">{{$link->title}}</a><br>
+        <p>{{$link->description}}</p><br>
+    @endforeach
 @stop
 
-@section('sidebar')
+@section('action')
     @foreach($links as $link)
         <a href="{{ $link->url }}">{{$link->title}}</a><br>
     @endforeach

@@ -17,6 +17,21 @@ class LinksController extends Controller
     }
 
     public function handleLinksForm(Request $request){
+        $request->validate([
+                'title' => 'required|min:8',
+                'url'   => 'required|active_url',
+                'description' => 'required'
+            ]
+        );
 
+        $link = new Link;
+
+        $link->title = $request->title;
+        $link->url = $request->url;
+        $link->description = $request->description;
+
+        $link->save();
+
+        return redirect()->route('link');
 }
 }
